@@ -1,9 +1,13 @@
+import csv
 from functools import lru_cache
 from typing import List, Dict
 
 
 @lru_cache
 def read(path: str) -> List[Dict]:
+    with open(path, "r", encoding="utf8") as file:
+        data_reader = csv.DictReader(file, delimiter=",", quotechar='"')
+        return [row for row in data_reader]
     """Reads a file from a given path and returns its contents
 
     Parameters
